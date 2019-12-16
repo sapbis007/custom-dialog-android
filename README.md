@@ -1,6 +1,7 @@
 # custom-dialog
 
 Custom Dialog is a small library that allows you to add custom dialog box to any view.
+[jitpack.io]
 
 # Download
 The minimum API level supported by this library is API 19.
