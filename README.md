@@ -1,5 +1,5 @@
 # custom-dialog
 
 dependencies {
-  implementation 'com.psoffritti.slidingpanel:core:1.0.0'
+  implementation 'com.github.sapbis007:custom-dialog-android:1.0.0'
 }
