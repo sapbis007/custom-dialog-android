@@ -1,9 +1,9 @@
 # custom-dialog
 
 # Download
-<The Gradle dependency is available via jCenter. jCenter is the default Maven repository used by Android Studio.
+< The Gradle dependency is available via jCenter. jCenter is the default Maven repository used by Android Studio.
 
-The minimum API level supported by this library is API 15.>
+The minimum API level supported by this library is API 19. >
 ```
 allprojects {
 		repositories {
