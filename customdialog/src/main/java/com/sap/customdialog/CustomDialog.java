@@ -40,11 +40,11 @@ public class CustomDialog extends Dialog {
     private OnListCustomDialogButtonClickListener onListCustomDialogButtonClickListener;
     private int position = Integer.MIN_VALUE;
 
-    protected void setOnCustomDialogButtonClickListener(OnCustomDialogButtonClickListener onCustomDialogButtonClickListener) {
+    public void setOnCustomDialogButtonClickListener(OnCustomDialogButtonClickListener onCustomDialogButtonClickListener) {
         this.onCustomDialogButtonClickListener = onCustomDialogButtonClickListener;
     }
 
-    protected void setOnListCustomDialogButtonClickListener(OnListCustomDialogButtonClickListener onListCustomDialogButtonClickListener) {
+    public void setOnListCustomDialogButtonClickListener(OnListCustomDialogButtonClickListener onListCustomDialogButtonClickListener) {
         this.onListCustomDialogButtonClickListener = onListCustomDialogButtonClickListener;
     }
 
@@ -109,81 +109,81 @@ public class CustomDialog extends Dialog {
 
     /** Setting Question Text **/
 
-    protected void setQuestionText( String text ) {
+    public void setQuestionText( String text ) {
         this.questionText.setText(text);
     }
 
-    protected void setQuestionTextColor( String color ) {
+    public void setQuestionTextColor( String color ) {
         this.questionText.setTextColor(Color.parseColor(color));
     }
 
-    protected void setQuestionTextColor( int color ) {
+    public void setQuestionTextColor( int color ) {
         this.questionText.setTextColor(color);
     }
 
-    protected void setQuestionTextSize(float textSize) {
+    public void setQuestionTextSize(float textSize) {
         this.questionText.setTextSize(textSize);
     }
 
-    protected void setQuestionTextFont(String fontPath) {
+    public void setQuestionTextFont(String fontPath) {
         Typeface font = Typeface.createFromAsset(getContext().getAssets(), fontPath);
         this.questionText.setTypeface(font);
     }
 
-    protected void setQuestionTextStyle(int style) {
+    public void setQuestionTextStyle(int style) {
         this.questionText.setTypeface(this.questionText.getTypeface(), style);
     }
 
     /** Setting Disagree Button **/
 
-    protected void setDisagreeButtonText( String text ) {
+    public void setDisagreeButtonText( String text ) {
         this.disAgreeButton.setText(text);
     }
 
-    protected void setDisagreeButtonTextColor( String color ) {
+    public void setDisagreeButtonTextColor( String color ) {
         this.disAgreeButton.setTextColor(Color.parseColor(color));
     }
 
-    protected void setDisagreeButtonTextColor( int color ) {
+    public void setDisagreeButtonTextColor( int color ) {
         this.disAgreeButton.setTextColor(color);
     }
 
-    protected void setDisagreeButtonBg( String color ) {
+    public void setDisagreeButtonBg( String color ) {
         this.disAgreeButton.setBackgroundColor(Color.parseColor(color));
     }
 
-    protected void setDisagreeButtonBg( int color ) {
+    public void setDisagreeButtonBg( int color ) {
         this.disAgreeButton.setBackgroundColor(color);
     }
 
-    protected void setDisagreeButtonBg( Drawable drawable ) {
+    public void setDisagreeButtonBg( Drawable drawable ) {
         this.disAgreeButton.setBackground(drawable);
     }
 
-    protected void setDisagreeButtonTextSize(float textSize) {
+    public void setDisagreeButtonTextSize(float textSize) {
         this.disAgreeButton.setTextSize(textSize);
     }
 
-    protected void setDisagreeButtonFont(String fontPath) {
+    public void setDisagreeButtonFont(String fontPath) {
         Typeface font = Typeface.createFromAsset(getContext().getAssets(), fontPath);
         this.disAgreeButton.setTypeface(font);
     }
 
-    protected void setDisagreeButtonTextStyle(int style) {
+    public void setDisagreeButtonTextStyle(int style) {
         this.disAgreeButton.setTypeface(this.questionText.getTypeface(), style);
     }
 
     /** Setting Agree Button **/
 
-    protected void setAgreeButtonText( String text ) {
+    public void setAgreeButtonText( String text ) {
         this.agreeButton.setText(text);
     }
 
-    protected void setAgreeButtonTextColor( String color ) {
+    public void setAgreeButtonTextColor( String color ) {
         this.agreeButton.setTextColor(Color.parseColor(color));
     }
 
-    protected void setAgreeButtonTextColor( int color ) {
+    public void setAgreeButtonTextColor( int color ) {
         this.agreeButton.setTextColor(color);
     }
 
@@ -191,47 +191,47 @@ public class CustomDialog extends Dialog {
         this.agreeButton.setBackgroundColor(Color.parseColor(color));
     }
 
-    protected void setAgreeButtonBg( int color ) {
+    public void setAgreeButtonBg( int color ) {
         this.agreeButton.setBackgroundColor(color);
     }
 
-    protected void setAgreeButtonBg( Drawable drawable ) {
+    public void setAgreeButtonBg( Drawable drawable ) {
         this.agreeButton.setBackground(drawable);
     }
 
-    protected void setAgreeButtonTextSize(float textSize) {
+    public void setAgreeButtonTextSize(float textSize) {
         this.agreeButton.setTextSize(textSize);
     }
 
-    protected void setAgreeButtonFont(String fontPath) {
+    public void setAgreeButtonFont(String fontPath) {
         Typeface font = Typeface.createFromAsset(getContext().getAssets(), fontPath);
         this.agreeButton.setTypeface(font);
     }
 
-    protected void setAgreeButtonTextStyle(int style) {
+    public void setAgreeButtonTextStyle(int style) {
         this.agreeButton.setTypeface(this.questionText.getTypeface(), style);
     }
 
     /** Setting Background **/
 
-    protected void setDialogBg( String color ) {
+    public void setDialogBg( String color ) {
         this.dialogBox.setBackgroundColor(Color.parseColor(color));
     }
 
-    protected void setDialogBg( int color ) {
+    public void setDialogBg( int color ) {
         this.dialogBox.setBackgroundColor(color);
     }
 
-    protected void setDialogBg( Drawable drawable ) {
+    public void setDialogBg( Drawable drawable ) {
         this.dialogBox.setBackground(drawable);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    protected void setDialogElevation(float elevation) {
+    public void setDialogElevation(float elevation) {
         this.dialogBox.setElevation(elevation);
     }
 
-    protected void setDialogCornerRadius(float radius) {
+    public void setDialogCornerRadius(float radius) {
         this.dialogBox.setRadius(radius);
     }
 }
