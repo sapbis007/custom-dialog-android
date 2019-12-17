@@ -8,7 +8,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,7 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 
-public class CustomDialog extends Dialog implements View.OnClickListener {
+public class CustomDialog extends Dialog {
 
     public interface OnCustomDialogButtonClickListener {
         void onAgreeButtonClicked();
@@ -41,35 +40,26 @@ public class CustomDialog extends Dialog implements View.OnClickListener {
     private OnListCustomDialogButtonClickListener onListCustomDialogButtonClickListener;
     private int position = Integer.MIN_VALUE;
 
-    public void setOnCustomDialogButtonClickListener(OnCustomDialogButtonClickListener onCustomDialogButtonClickListener) {
+    protected void setOnCustomDialogButtonClickListener(OnCustomDialogButtonClickListener onCustomDialogButtonClickListener) {
         this.onCustomDialogButtonClickListener = onCustomDialogButtonClickListener;
     }
 
-    public void setOnListCustomDialogButtonClickListener(OnListCustomDialogButtonClickListener onListCustomDialogButtonClickListener) {
+    protected void setOnListCustomDialogButtonClickListener(OnListCustomDialogButtonClickListener onListCustomDialogButtonClickListener) {
         this.onListCustomDialogButtonClickListener = onListCustomDialogButtonClickListener;
     }
 
     public CustomDialog(Context context) {
         super(context);
+        inflateView();
     }
 
     public CustomDialog(Context context, int position) {
         super(context);
         this.position = position;
+        inflateView();
     }
 
-    public void open() {
-        show();
-    }
-
-    public void close() {
-        dismiss();
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+    private void inflateView() {
         setContentView(R.layout.layout_custom_dialog);
 
         parentLayout = findViewById(R.id.parent_layout);
@@ -78,88 +68,122 @@ public class CustomDialog extends Dialog implements View.OnClickListener {
         agreeButton = findViewById(R.id.btn_agree);
         disAgreeButton = findViewById(R.id.btn_disagree);
 
-        agreeButton.setOnClickListener(this);
-        disAgreeButton.setOnClickListener(this);
-        parentLayout.setOnClickListener(this);
+        agreeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if( position != Integer.MIN_VALUE ) {
+                    if( onListCustomDialogButtonClickListener != null )
+                        onListCustomDialogButtonClickListener.onAgreeButtonClicked(position);
+                } else {
+                    if( onCustomDialogButtonClickListener != null )
+                        onCustomDialogButtonClickListener.onAgreeButtonClicked();
+                }
+            }
+        });
+
+        disAgreeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if( position != Integer.MIN_VALUE ) {
+                    if( onListCustomDialogButtonClickListener != null )
+                        onListCustomDialogButtonClickListener.onDisAgreeButtonClicked(position);
+                } else {
+                    if( onCustomDialogButtonClickListener != null )
+                        onCustomDialogButtonClickListener.onDisAgreeButtonClicked();
+                }
+            }
+        });
+
+        parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+            }
+        });
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     /** Setting Question Text **/
 
-    public void setQuestionText( String text ) {
+    protected void setQuestionText( String text ) {
         this.questionText.setText(text);
     }
 
-    public void setQuestionTextColor( String color ) {
+    protected void setQuestionTextColor( String color ) {
         this.questionText.setTextColor(Color.parseColor(color));
     }
 
-    public void setQuestionTextColor( int color ) {
+    protected void setQuestionTextColor( int color ) {
         this.questionText.setTextColor(color);
     }
 
-    public void setQuestionTextSize(float textSize) {
+    protected void setQuestionTextSize(float textSize) {
         this.questionText.setTextSize(textSize);
     }
 
-    public void setQuestionTextFont(String fontPath) {
+    protected void setQuestionTextFont(String fontPath) {
         Typeface font = Typeface.createFromAsset(getContext().getAssets(), fontPath);
         this.questionText.setTypeface(font);
     }
 
-    public void setQuestionTextStyle(int style) {
+    protected void setQuestionTextStyle(int style) {
         this.questionText.setTypeface(this.questionText.getTypeface(), style);
     }
 
-    /* Setting Disagree Button */
+    /** Setting Disagree Button **/
 
-    public void setDisagreeButtonText( String text ) {
+    protected void setDisagreeButtonText( String text ) {
         this.disAgreeButton.setText(text);
     }
 
-    public void setDisagreeButtonTextColor( String color ) {
+    protected void setDisagreeButtonTextColor( String color ) {
         this.disAgreeButton.setTextColor(Color.parseColor(color));
     }
 
-    public void setDisagreeButtonTextColor( int color ) {
+    protected void setDisagreeButtonTextColor( int color ) {
         this.disAgreeButton.setTextColor(color);
     }
 
-    public void setDisagreeButtonBg( String color ) {
+    protected void setDisagreeButtonBg( String color ) {
         this.disAgreeButton.setBackgroundColor(Color.parseColor(color));
     }
 
-    public void setDisagreeButtonBg( int color ) {
+    protected void setDisagreeButtonBg( int color ) {
         this.disAgreeButton.setBackgroundColor(color);
     }
 
-    public void setDisagreeButtonBg( Drawable drawable ) {
+    protected void setDisagreeButtonBg( Drawable drawable ) {
         this.disAgreeButton.setBackground(drawable);
     }
 
-    public void setDisagreeButtonTextSize(float textSize) {
+    protected void setDisagreeButtonTextSize(float textSize) {
         this.disAgreeButton.setTextSize(textSize);
     }
 
-    public void setDisagreeButtonFont(String fontPath) {
+    protected void setDisagreeButtonFont(String fontPath) {
         Typeface font = Typeface.createFromAsset(getContext().getAssets(), fontPath);
         this.disAgreeButton.setTypeface(font);
     }
 
-    public void setDisagreeButtonTextStyle(int style) {
+    protected void setDisagreeButtonTextStyle(int style) {
         this.disAgreeButton.setTypeface(this.questionText.getTypeface(), style);
     }
 
     /** Setting Agree Button **/
 
-    public void setAgreeButtonText( String text ) {
+    protected void setAgreeButtonText( String text ) {
         this.agreeButton.setText(text);
     }
 
-    public void setAgreeButtonTextColor( String color ) {
+    protected void setAgreeButtonTextColor( String color ) {
         this.agreeButton.setTextColor(Color.parseColor(color));
     }
 
-    public void setAgreeButtonTextColor( int color ) {
+    protected void setAgreeButtonTextColor( int color ) {
         this.agreeButton.setTextColor(color);
     }
 
@@ -167,70 +191,47 @@ public class CustomDialog extends Dialog implements View.OnClickListener {
         this.agreeButton.setBackgroundColor(Color.parseColor(color));
     }
 
-    public void setAgreeButtonBg( int color ) {
+    protected void setAgreeButtonBg( int color ) {
         this.agreeButton.setBackgroundColor(color);
     }
 
-    public void setAgreeButtonBg( Drawable drawable ) {
+    protected void setAgreeButtonBg( Drawable drawable ) {
         this.agreeButton.setBackground(drawable);
     }
 
-    public void setAgreeButtonTextSize(float textSize) {
+    protected void setAgreeButtonTextSize(float textSize) {
         this.agreeButton.setTextSize(textSize);
     }
 
-    public void setAgreeButtonFont(String fontPath) {
+    protected void setAgreeButtonFont(String fontPath) {
         Typeface font = Typeface.createFromAsset(getContext().getAssets(), fontPath);
         this.agreeButton.setTypeface(font);
     }
 
-    public void setAgreeButtonTextStyle(int style) {
+    protected void setAgreeButtonTextStyle(int style) {
         this.agreeButton.setTypeface(this.questionText.getTypeface(), style);
     }
 
     /** Setting Background **/
 
-    public void setDialogBg( String color ) {
+    protected void setDialogBg( String color ) {
         this.dialogBox.setBackgroundColor(Color.parseColor(color));
     }
 
-    public void setDialogBg( int color ) {
+    protected void setDialogBg( int color ) {
         this.dialogBox.setBackgroundColor(color);
     }
 
-    public void setDialogBg( Drawable drawable ) {
+    protected void setDialogBg( Drawable drawable ) {
         this.dialogBox.setBackground(drawable);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public void setDialogElevation(float elevation) {
+    protected void setDialogElevation(float elevation) {
         this.dialogBox.setElevation(elevation);
     }
 
-    public void setDialogCornerRadius(float radius) {
+    protected void setDialogCornerRadius(float radius) {
         this.dialogBox.setRadius(radius);
-    }
-
-    @Override
-    public void onClick(View view) {
-        if( view.getId() == R.id.btn_agree ) {
-            if( position != Integer.MIN_VALUE ) {
-                if( onListCustomDialogButtonClickListener != null )
-                    onListCustomDialogButtonClickListener.onAgreeButtonClicked(position);
-            } else {
-                if( onCustomDialogButtonClickListener != null )
-                    onCustomDialogButtonClickListener.onAgreeButtonClicked();
-            }
-        } else if( view.getId() == R.id.btn_disagree ) {
-            if( position != Integer.MIN_VALUE ) {
-                if( onListCustomDialogButtonClickListener != null )
-                    onListCustomDialogButtonClickListener.onDisAgreeButtonClicked(position);
-            } else {
-                if( onCustomDialogButtonClickListener != null )
-                    onCustomDialogButtonClickListener.onDisAgreeButtonClicked();
-            }
-        } else {
-            dismiss();
-        }
     }
 }
