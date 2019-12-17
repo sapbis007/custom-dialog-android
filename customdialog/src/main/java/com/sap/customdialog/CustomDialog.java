@@ -15,7 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 
-public class CustomDialog extends Dialog {
+public final class CustomDialog extends Dialog {
 
     public interface OnCustomDialogButtonClickListener {
         void onAgreeButtonClicked();
