@@ -9,7 +9,6 @@
         android:id="@+id/parent_card_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
         android:background="@android:color/white"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
